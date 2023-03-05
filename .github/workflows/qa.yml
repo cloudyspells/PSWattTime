@@ -33,7 +33,9 @@ jobs:
       - name: Run Pester tests
         shell: pwsh
         run: |
-          Import-Module Az
+          Set-PSRepository PSGallery -InstallationPolicy Trusted
+          Install-Module Az.Resources
+          Import-Module Az.Resources
           Invoke-Pester ./tests/PSWattTime.Tests/PSWattTime.Tests.ps1 `
             -PassThru `
             -CodeCoverage ./src/PSWattTime/PSWattTime.psm1 `
