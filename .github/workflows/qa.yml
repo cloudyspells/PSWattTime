@@ -35,7 +35,7 @@ jobs:
         run: |
           Invoke-Pester ./tests/PSWattTime.Tests/PSWattTime.Tests.ps1 `
             -PassThru `
-            -CodeCoverage ./src/PSWattTime.PSWattTime.psm1 `
+            -CodeCoverage ./src/PSWattTime/PSWattTime.psm1 `
             -CodeCoverageOutputFile ./tests/coverage.xml `
             -CodeCoverageOutputFileFormat JaCoCo `
             -OutputFile ./tests/junit.xml `
