@@ -1,0 +1,49 @@
+# File: .github/workflows/qa.yml
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - 'main'
+      - 'releases/**'
+
+name: PowerShell Module Quality Assurance
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Login to Az PowerShell Module
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          enable-AzPSSession: true
+
+      - name: Run PSScriptAnalyzer
+        uses: microsoft/psscriptanalyzer-action@v1.0
+        with:
+          path: .\
+          recurse: true 
+          output: results.sarif
+          excludeRule: '"PSAvoidUsingPlainTextForPassword"'
+
+      - name: Run Pester tests
+        shell: pwsh
+        run: |
+          Invoke-Pester ./tests/PSWattTime.Tests/PSWattTime.Tests.ps1 `
+            -PassThru `
+            -CodeCoverage ./src/PSWattTime.PSWattTime.psm1 `
+            -CodeCoverageOutputFile ./tests/coverage.xml `
+            -CodeCoverageOutputFileFormat JaCoCo `
+            -OutputFile ./tests/junit.xml `
+            -OutputFormat JUnitXml
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: unit-tests
+          path: ./tests/*.xml
+        if: ${{ always() }}
