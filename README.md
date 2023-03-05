@@ -7,7 +7,7 @@ PowerShell Module for getting PSWattTime emission data
 [![PowerShell Module Quality Assurance](https://github.com/cloudyspells/PSWattTime/actions/workflows/qa.yml/badge.svg)](https://github.com/cloudyspells/PSWattTime/actions/workflows/qa.yml)
 
 This PowerShell module is intended for retrieving emissions
-data from [WattTime]('https://www.watttime.org/') for a
+data from [WattTime](https://www.watttime.org/) for a
 supplied Azure Region.
 
 This module is supplied as-is at the moment and not (yet)
@@ -16,14 +16,14 @@ published through _PSGallery_.
 ### Usage
 
 To get started with this module you will need an account on
-[WattTime]('https://www.watttime.org/'). See 
-[the manual]('https://www.watttime.org/api-documentation/#register-new-user')
+[WattTime](https://www.watttime.org/). See 
+[the manual](https://www.watttime.org/api-documentation/#register-new-user)
 on registering an account. NOTE: You can only register via the API.
 Currently no GUI exists for registration. 
 
 You will also need the _Az.Resources_ PowerShell Module for Azure installed
 and connected to your Azure account. See 
-[the installation manual]('https://learn.microsoft.com/en-us/powershell/azure/install-az-ps') for the _Az_ module for instructions.
+[the installation manual](https://learn.microsoft.com/en-us/powershell/azure/install-az-ps) for the _Az_ module for instructions.
 
 
 Import the module from a clone of this repository:
