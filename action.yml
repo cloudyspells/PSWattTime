@@ -35,4 +35,4 @@ runs:
         Import-Module ${{ github.action_path }}/src/PSWattTime
         $token = Get-WattTimeAuthToken -Username ${{ inputs.watttime_username }} -Password ${{ inputs.watttime_password }}
         $result = Get-AzureRegionWithLowestWattTime -Regions ${{ inputs.regions }} -AuthToken $token
-        "region=$($result.region)" >> $GITHUB_OUTPUT
+        "region=$($result.region)" >> $env:GITHUB_OUTPUT
