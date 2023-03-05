@@ -39,7 +39,8 @@ jobs:
             -CodeCoverageOutputFile ./tests/coverage.xml `
             -CodeCoverageOutputFileFormat JaCoCo `
             -OutputFile ./tests/junit.xml `
-            -OutputFormat JUnitXml
+            -OutputFormat JUnitXml `
+            -EnableExit
 
       - name: Upload test results
         uses: actions/upload-artifact@v3
