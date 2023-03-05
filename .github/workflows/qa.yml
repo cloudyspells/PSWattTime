@@ -32,6 +32,9 @@ jobs:
 
       - name: Run Pester tests
         shell: pwsh
+        env:
+          WATTTIMEUSERNAME: ${{ secrets.WATTTIMEUSERNAME }}
+          WATTTIMEPASSWORD: ${{ secrets.WATTTIMEPASSWORD }}
         run: |
           Set-PSRepository PSGallery -InstallationPolicy Trusted
           Install-Module Az.Resources
