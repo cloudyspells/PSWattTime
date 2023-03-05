@@ -51,7 +51,7 @@ jobs:
       - name: Run the GitHub action in this commit
         uses: cloudyspells/PSWattTime@main
         with:
-          azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
+          azure_credential: ${{ secrets.AZURE_CREDENTIALS }}
           watttime_username: ${{ secrets.WATTTIMEUSERNAME }}
           watttime_password: ${{ secrets.WATTTIMEPASSWORD }}
           regions: '"westeurope","norteurope","uksouth","francecentral","germanynorth"'
