@@ -8,14 +8,14 @@ Describe "PSWattTimeTests" {
     
     Context "When we login" {
         It "Should return a token" {
-            $authToken = Get-WattTimeAuthToken -Username $env:WattTimeUsername -Password $env:WattTimePassword
+            $authToken = Get-WattTimeAuthToken -Username $env:WATTTIMEUSERNAME -Password $env:WATTTIMEPASSWORD
             $authToken | Should -Not -BeNullOrEmpty
         }
     }
 
     Context "When we convert an Azure region to a ba" {
         BeforeAll {
-            $authToken = Get-WattTimeAuthToken -Username $env:WattTimeUsername -Password $env:WattTimePassword
+            $authToken = Get-WattTimeAuthToken -Username $env:WATTTIMEUSERNAME -Password $env:WATTTIMEPASSWORD
             $query = ConvertFrom-AzureRegion -Region 'westeurope' -AuthToken $authToken
         }
 
@@ -30,7 +30,7 @@ Describe "PSWattTimeTests" {
 
     Context "When we get the WattTime for a region" {
         BeforeAll {
-            $authToken = Get-WattTimeAuthToken -Username $env:WattTimeUsername -Password $env:WattTimePassword
+            $authToken = Get-WattTimeAuthToken -Username $env:WATTTIMEUSERNAME -Password $env:WATTTIMEPASSWORD
             $wattTime = Get-WattTimeForAzureRegion -Region 'westeurope' -AuthToken $authToken
         }
 
@@ -69,7 +69,7 @@ Describe "PSWattTimeTests" {
 
     Context "When we get the WattTime for a list of regions" {
         BeforeAll {
-            $authToken = Get-WattTimeAuthToken -Username $env:WattTimeUsername -Password $env:WattTimePassword
+            $authToken = Get-WattTimeAuthToken -Username $env:WATTTIMEUSERNAME -Password $env:WATTTIMEPASSWORD
             $wattTime = Get-AzureRegionWithLowestWattTime -Regions 'westeurope','northeurope' -AuthToken $authToken
         }
 
