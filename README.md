@@ -15,6 +15,8 @@ published through _PSGallery_.
 
 ### Usage
 
+#### PowerShell Module
+
 To get started with this module you will need an account on
 [WattTime](https://www.watttime.org/). See 
 [the manual](https://www.watttime.org/api-documentation/#register-new-user)
@@ -63,4 +65,53 @@ percent    : 69
 point_time : 5-3-2023 14:15:00
 region     : northeurope
 
+```
+
+#### GitHub Action
+
+This PowerShell module also comes with a _GitHub Action_ you can use
+in your GitHub workflows. Again you will need a pre-existing account
+for _WattTime_ and an Azure CLI/PowerShell secret configured in your repo
+
+**Example**
+
+```yaml
+
+on:
+  pull_request:
+    branches:
+      - 'main'
+      - 'releases/**'
+
+name: Deploy to region with lowest emissions
+
+jobs:
+  deploy-to-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Login to Az PowerShell Module
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          enable-AzPSSession: true
+
+      - name: Get region with lowest emissions
+        uses: cloudyspells/PSWattTime@main
+        id: watttime_action
+        with:
+          azure_credential: ${{ secrets.AZURE_CREDENTIALS }}
+          watttime_username: ${{ secrets.WATTTIMEUSERNAME }}
+          watttime_password: ${{ secrets.WATTTIMEPASSWORD }}
+          regions: '"westeurope","northeurope","uksouth","francecentral","germanynorth"'
+
+      - uses: azure/arm-deploy@v1
+        name: Run Bicep deployment
+        with:
+          subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          scope: subscription
+          region: ${{ steps.watttime_action.outputs.region }}
+          template: src/bicep/main.bicep
 ```
