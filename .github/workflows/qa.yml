@@ -49,7 +49,7 @@ jobs:
             -EnableExit
 
       - name: Run the GitHub action in this commit
-        uses: cloudyspells/PSWattTime@${{ github.sha }}
+        uses: cloudyspells/PSWattTime
         with:
           azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
           watttime_username: ${{ secrets.WATTTIMEUSERNAME }}
