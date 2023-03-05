@@ -33,6 +33,7 @@ jobs:
       - name: Run Pester tests
         shell: pwsh
         run: |
+          Import-Module Az
           Invoke-Pester ./tests/PSWattTime.Tests/PSWattTime.Tests.ps1 `
             -PassThru `
             -CodeCoverage ./src/PSWattTime/PSWattTime.psm1 `
