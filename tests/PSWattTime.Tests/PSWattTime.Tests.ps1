@@ -1,6 +1,6 @@
 Describe "PSWattTimeTests" {
     BeforeAll {
-        $module = Import-Module -Name $PSScriptRoot\..\..\src\PSWattTime\PSWattTime.psd1 -PassThru
+        $module = Import-Module -Name $PSScriptRoot/../../src/PSWattTime/PSWattTime.psd1 -PassThru
         $module | Should -Not -BeNullOrEmpty
         $env:WATTTIMEUSERNAME | Should -Not -BeNullOrEmpty
         $env:WATTTIMEPASSWORD | Should -Not -BeNullOrEmpty
