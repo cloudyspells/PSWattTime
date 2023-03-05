@@ -1,0 +1,38 @@
+name: 'PSWattTime for Azure regions'
+description: 'Get Azure region with optimal carbon emissions from a given set'
+inputs:
+  azure_credential:
+    description: Azure credential secret for azure/login@v1 action
+    required: true
+  regions:
+    description: Comma seperated list of Azure regions to check for current emissions
+    required: false
+    default: '"westeurope","northeurope"'
+  watttime_username:
+    description: Username for registered watttime.org account
+    required: true
+  watttime_password:
+    description: Password for registered watttime.org account
+    required: true
+outputs:
+  region:
+    description: Azure region with the best emissions
+    value: ${{ steps.invokewatttime.outputs.region}}
+runs:
+  using: composite
+  steps:
+    - id: azurelogin
+      uses: azure/login@v1
+      with:
+        creds: ${{ inputs.azure_credential }}
+        enable-AzPSSession: true
+    - id: invokewatttime
+      shell: pwsh
+      run: |
+        Set-PSRepository PSGallery -InstallationPolicy Trusted
+        Install-Module Az.Resources
+        Import-Module Az.Resources
+        Import-Module ${{ github.action_path }}/src/PSWattTime
+        $token = Get-WattTimeAuthToken -Username ${{ inputs.watttime_username }} -Password ${{ inputs.watttime_password }}
+        $result = Get-AzureRegionWithLowestWattTime -Regions ${{ inputs.regions }} -AuthToken $token
+        "region=$($result.region)" >> $GITHUB_OUTPUT

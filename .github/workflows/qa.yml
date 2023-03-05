@@ -48,6 +48,14 @@ jobs:
             -OutputFormat JUnitXml `
             -EnableExit
 
+      - name: Run the GitHub action in this commit
+        uses: cloudyspells/PSWattTime@${{ github.sha }}
+        with:
+          azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
+          watttime_username: ${{ secrets.WATTTIMEUSERNAME }}
+          watttime_password: ${{ secrets.WATTTIMEPASSWORD }}
+          regions: '"westeurope","norteurope","uksouth","francecentral","germanynorth"'
+
       - name: Upload test results
         uses: actions/upload-artifact@v3
         with:
