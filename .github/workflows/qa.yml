@@ -54,7 +54,7 @@ jobs:
           azure_credential: ${{ secrets.AZURE_CREDENTIALS }}
           watttime_username: ${{ secrets.WATTTIMEUSERNAME }}
           watttime_password: ${{ secrets.WATTTIMEPASSWORD }}
-          regions: '"westeurope","norteurope","uksouth","francecentral","germanynorth"'
+          regions: '"westeurope","northeurope","uksouth","francecentral","germanynorth"'
 
       - name: Upload test results
         uses: actions/upload-artifact@v3
