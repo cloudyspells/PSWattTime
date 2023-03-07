@@ -1,0 +1,20 @@
+# File: .github/workflows/qa.yml
+
+on:
+  release:
+
+name: Publish Module to PSGallery
+
+jobs:
+  publish:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Publish module
+        uses: pcgeek86/publish-powershell-module-action@v20
+        id: publish-module
+        with:
+          NuGetApiKey: ${{ secrets.PS_GALLERY_KEY }}
+          modulePath: ./src/PSWattTime

@@ -48,7 +48,7 @@ function Get-WattTimeAuthToken {
     The ba to query for
 
     .EXAMPLE
-    Get-WattTime -ba 'AUS-NSW' -AuthToken $authToken
+    Get-WattTime -ba 'NL' -AuthToken $authToken
 #>
 function Get-WattTime {
     [CmdletBinding()]
