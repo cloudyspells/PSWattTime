@@ -45,7 +45,6 @@ and connected to your Azure account. See
 [the installation manual](https://learn.microsoft.com/en-us/powershell/azure/install-az-ps)
 for the _Az_ module for instructions.
 
-
 Import the module from a clone of this repository:
 
 ```powershell
