@@ -48,6 +48,10 @@ jobs:
             -OutputFormat JUnitXml `
             -EnableExit
 
+      - name: Test the Module Manifest
+        shell: pwsh
+        run: Test-ModuleManifest -Path ./src/PSWattTime/PSWattTime.psd1
+
       - name: Run the GitHub action in this commit
         uses: cloudyspells/PSWattTime@main
         id: watttime_action
