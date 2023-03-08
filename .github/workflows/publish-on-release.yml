@@ -2,6 +2,8 @@
 
 on:
   release:
+    types:
+      - "published"
   workflow_dispatch:
 
 name: Publish Module to PSGallery
