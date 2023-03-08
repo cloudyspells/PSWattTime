@@ -166,5 +166,59 @@ function Get-AzureRegionWithLowestWattTime {
     $wattTime | Sort-Object -Property percent | Select-Object -First 1
 }
 
-Export-ModuleMember -Function Get-WattTimeAuthToken, Get-WattTime, ConvertFrom-AzureRegion, Get-WattTimeForAzureRegion, Get-AzureRegionWithLowestWattTime
+<#
+    .SYNOPSIS
+    Create a new WattTime account
 
+    .DESCRIPTION
+    Creates a new PSWattTime account with the specified username,
+    password, email and organization
+
+    .PARAMETER Username
+    The username for the new account
+
+    .PARAMETER Password
+    The password for the new account
+
+    .PARAMETER Email
+    The email address for the new account
+
+    .PARAMETER Organization
+    The organization for the new account
+
+    .EXAMPLE
+    New-WattTimeAccount -Username 'username' -Password 'password' -Email 'email' -Organization 'organization'
+#>
+function New-WattTimeAccount {
+    [CmdletBinding()]
+    param (
+        [Parameter(Mandatory=$true)]
+        [string]$Username,
+        [Parameter(Mandatory=$true)]
+        [string]$Password,
+        [Parameter(Mandatory=$true)]
+        [string]$Email,
+        [Parameter(Mandatory=$true)]
+        [string]$Organization
+    )
+    $headers = @{
+        'Content-Type' = 'application/json'
+    }
+    $body = @{
+        username = $Username
+        password = $Password
+        email = $Email
+        org = $Organization
+    }
+    $bodyJson = $body | ConvertTo-Json
+    $response = Invoke-RestMethod -Uri 'https://api2.watttime.org/v2/register/' -Method Post -Headers $headers -Body $bodyJson -ContentType 'application/json'
+    return $response
+}
+
+Export-ModuleMember -Function `
+    Get-WattTimeAuthToken, `
+    Get-WattTime, `
+    ConvertFrom-AzureRegion, `
+    Get-WattTimeForAzureRegion, `
+    Get-AzureRegionWithLowestWattTime, `
+    New-WattTimeAccount

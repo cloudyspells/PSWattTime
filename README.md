@@ -27,9 +27,6 @@ For a real-world solution with a commercial data provider, check out
 the [carbon-aware-sdk](https://github.com/Green-Software-Foundation/carbon-aware-sdk)
 by the [Green Software Foundation](https://greensoftware.foundation/)
 
-This module is supplied as-is at the moment and not (yet)
-published through _PSGallery_.
-
 ### Usage
 
 #### PowerShell Module
@@ -37,24 +34,35 @@ published through _PSGallery_.
 To get started with this module you will need an account on
 [WattTime](https://www.watttime.org/). See
 [the manual](https://www.watttime.org/api-documentation/#register-new-user)
-on registering an account. NOTE: You can only register via the API.
-Currently no GUI exists for registration.
+on registering an account. The module provides a function `New-WattTimeAccount`
+to create an account if you do not yet have one.
 
 You will also need the _Az.Resources_ PowerShell Module for Azure installed
 and connected to your Azure account. See
 [the installation manual](https://learn.microsoft.com/en-us/powershell/azure/install-az-ps)
 for the _Az_ module for instructions.
 
-Import the module from a clone of this repository:
+To install the module from the [PowerShell Gallery](https://www.powershellgallery.com/packages/PSWattTime/).
 
 ```powershell
-Import-Module .\src\PSWattTime
+Install-Module -Name PSWattTime
 ```
+
+To register an account with _WattTime_:
+
+```powershell
+New-WattTimeAccount -Username <YOUR_USERNAME> `
+  -Password '<YOUR_PASSWORD>' `
+  -Email '<you@domain.com>' `
+  -Organization <YOUR_ORGANIZATION>
+```
+
 
 Authenticate to the _WattTime_ API:
 
 ```powershell
- $token = Get-WattTimeAuthToken -Username '<YOUR_WATTTIME_USERNAME>' -Password '<YOUR_WATTTIME_PASSWORD>'
+ $token = Get-WattTimeAuthToken -Username '<YOUR_WATTTIME_USERNAME>' `
+  -Password '<YOUR_WATTTIME_PASSWORD>'
 ```
 
 Get current percentage of energy with emissions the 'westeurope' Azure region:
