@@ -22,8 +22,7 @@ jobs:
           Install-Module Az.Resources
 
       - name: Publish module
-        uses: pcgeek86/publish-powershell-module-action@v20
+        shell: pwsh
         id: publish-module
-        with:
-          NuGetApiKey: ${{ secrets.PS_GALLERY_KEY }}
-          modulePath: ./src/PSWattTime
+        run: |
+          Publish-Module -Path ./src/PSWattTime -NuGetApiKey ${{ secrets.PS_GALLERY_KEY }}
