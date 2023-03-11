@@ -21,7 +21,6 @@
                 "Az",
                 "Az.Resources"
             ]
-
 		}
 	},
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
@@ -48,7 +47,8 @@
 			"settings": {
 				"dotnetAcquisitionExtension.existingDotnetPath": [
 					"/usr/bin/dotnet"
-				]
+				],
+				"editor.rulers": [80,100,120]
 			}
 		}
 	},
