@@ -19,7 +19,8 @@
                 "Pester",
                 "PSScriptAnalyzer",
                 "Az",
-                "Az.Resources"
+                "Az.Resources",
+				"PlatyPS"
             ]
 		}
 	},

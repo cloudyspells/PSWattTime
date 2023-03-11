@@ -5,18 +5,20 @@ PowerShell Module for WattTime emission data
 --------------------------------------------
 
 [![PowerShell Module Quality Assurance](https://github.com/cloudyspells/PSWattTime/actions/workflows/qa.yml/badge.svg)](https://github.com/cloudyspells/PSWattTime/actions/workflows/qa.yml)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/cloudyspells/PSWattTime)
+![PowerShell Gallery Version](https://img.shields.io/powershellgallery/v/PSWattTime)
+![PowerShell Gallery](https://img.shields.io/powershellgallery/dt/PSWattTime)
 
-This PowerShell module is intended for retrieving emissions
-data from [WattTime](https://www.watttime.org/) for a
-supplied Azure Region during resource deployments.
-This is a lightweight solution making use of only the limited
-functionality available with a free account at _WattTime_.
-This means the module is only able to get near-realtime
-emissions data and no prodictive values. This means this module is
-_not_ a real solution for reduced carbon deployments and -software.
-It _does_ however provide some nice realtime values so you can
-simulate the beheaviour of deployments and software based on emissions
-data without the cost of a paid account for such data. For example in
+
+This PowerShell module is intended for retrieving emissions data from
+[WattTime](https://www.watttime.org/) for a supplied Azure Region during
+resource deployments. This is a lightweight solution making use of only the
+limited functionality available with a free account at _WattTime_. This means
+the module is only able to get near-realtime emissions data and no prodictive
+values. This means this module is _not_ a real solution for reduced carbon
+deployments and -software. It _does_ however provide some nice realtime values
+so you can simulate the beheaviour of deployments and software based on 
+emissions data without the cost of a paid account for such data. For example in
 lab- or proof of concept environments.
 
 The intended use of this module is for setting the `Location` parameter
@@ -91,6 +93,15 @@ point_time : 5-3-2023 14:15:00
 region     : northeurope
 
 ```
+
+##### Module Functions
+
+- [ConvertFrom-AzureRegion](docs/ConvertFrom-AzureRegion.md)
+- [Get-AzureRegionWithLowestWattTime](docs/Get-AzureRegionWithLowestWattTime.md)
+- [Get-WattTime](docs/Get-WattTime.md)
+- [Get-WattTimeAuthToken](docs/Get-WattTimeAuthToken.md)
+- [Get-WattTimeForAzureRegion](docs/Get-WattTimeForAzureRegion.md)
+- [New-WattTimeAccount](docs/New-WattTimeAccount.md)
 
 #### GitHub Action
 
