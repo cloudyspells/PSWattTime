@@ -1,8 +1,8 @@
 PSWattTime
 ==========
 
-PowerShell Module for PSWattTime emission data
-----------------------------------------------
+PowerShell Module for WattTime emission data
+--------------------------------------------
 
 [![PowerShell Module Quality Assurance](https://github.com/cloudyspells/PSWattTime/actions/workflows/qa.yml/badge.svg)](https://github.com/cloudyspells/PSWattTime/actions/workflows/qa.yml)
 
