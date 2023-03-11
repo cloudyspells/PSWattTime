@@ -15,6 +15,12 @@ $script:azLocations = Get-AzLocation
 
     .EXAMPLE
     Get-WattTimeAuthToken -Username 'username' -Password 'password'
+
+    .NOTES
+    This token should be used by the -AuthToken parameter of the other functions in this module
+
+    .OUTPUTS
+    a string containing the authentication token for the WattTime API
 #>
 function Get-WattTimeAuthToken {
     [CmdletBinding()]
@@ -49,6 +55,10 @@ function Get-WattTimeAuthToken {
 
     .EXAMPLE
     Get-WattTime -ba 'NL' -AuthToken $authToken
+
+    .NOTES
+    A ba is WattTime's term for a balancing authority. A balancing authority is a regional entity that is responsible for maintaining the balance between supply and demand of electricity in a given region. For more information, see https://www.watttime.org/faq
+
 #>
 function Get-WattTime {
     [CmdletBinding()]
@@ -84,6 +94,12 @@ function Get-WattTime {
 
     .EXAMPLE
     ConvertFrom-AzureRegion -Region westeurope
+
+    .NOTES
+    A ba is WattTime's term for a balancing authority. A balancing authority is a regional entity that is responsible for maintaining the balance between supply and demand of electricity in a given region. For more information, see https://www.watttime.org/faq
+
+    .OUTPUTS
+    a string containing the WattTime ba for the given Azure Region
 #>
 function ConvertFrom-AzureRegion {
     [CmdletBinding()]
@@ -120,6 +136,12 @@ function ConvertFrom-AzureRegion {
 
     .EXAMPLE
     Get-WattTimeForAzureRegion -Region westeurope -AuthToken $authToken
+
+    .OUTPUTS
+    System.Management.Automation.PSObject containing the following properties:
+        ba: The WattTime ba for the given Azure Region
+        percent: The current WattTime index for the given Azure Region
+        region: The Azure Region for which the WattTime index was retrieved
 #>
 function Get-WattTimeForAzureRegion {
     [CmdletBinding()]
@@ -150,6 +172,12 @@ function Get-WattTimeForAzureRegion {
 
     .EXAMPLE
     Get-AzureRegionWithLowestWattTime -Regions westeurope,northeurope -AuthToken $authToken
+
+    .OUTPUTS
+    System.Management.Automation.PSObject containing the following properties:
+        ba: The WattTime ba for the given Azure Region
+        percent: The current WattTime index for the given Azure Region
+        region: The Azure Region for which the WattTime index was retrieved
 #>
 function Get-AzureRegionWithLowestWattTime {
     [CmdletBinding()]
@@ -188,6 +216,13 @@ function Get-AzureRegionWithLowestWattTime {
 
     .EXAMPLE
     New-WattTimeAccount -Username 'username' -Password 'password' -Email 'email' -Organization 'organization'
+
+    .OUTPUTS
+    System.Management.Automation.PSObject containing the following properties:
+        username: The username for the new account
+        email: The email address for the new account
+        org: The organization for the new account
+        token: The authentication token for the new account
 #>
 function New-WattTimeAccount {
     [CmdletBinding()]
