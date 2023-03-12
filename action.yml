@@ -21,6 +21,9 @@ outputs:
   region:
     description: Azure region with the best emissions
     value: ${{ steps.invokewatttime.outputs.region}}
+  percent:
+    description: Percentage of energy with carbon emissions
+    value: ${{ steps.invokewatttime.outputs.percent }}
 runs:
   using: composite
   steps:
@@ -39,3 +42,10 @@ runs:
         $token = Get-WattTimeAuthToken -Username ${{ inputs.watttime_username }} -Password ${{ inputs.watttime_password }}
         $result = Get-AzureRegionWithLowestWattTime -Regions ${{ inputs.regions }} -AuthToken $token
         "region=$($result.region)" >> $env:GITHUB_OUTPUT
+        "percent=$($result.percent)" >> $env:GITHUB_OUTPUT
+        Write-Output "### PSWattTime Azure Region selection" >> $env:GITHUB_STEP_SUMMARY
+        Write-Output "" >> $env:GITHUB_STEP_SUMMARY
+        Write-Output "- Azure region with lowest emissions: **$($result.region)**" >> $env:GITHUB_STEP_SUMMARY
+        Write-Output "- Emissions percentage: **$($result.region)**" >> $env:GITHUB_STEP_SUMMARY
+
+
