@@ -21,6 +21,12 @@ $script:azLocations = Get-AzLocation
 
     .OUTPUTS
     a string containing the authentication token for the WattTime API
+
+    .LINK
+    https://github.com/cloudyspells/PSWattTime/blob/main/docs/Get-WattTimeAuthToken.md
+
+    .LINK
+    https://www.watttime.org/api-documentation/#login-amp-obtain-token
 #>
 function Get-WattTimeAuthToken {
     [CmdletBinding()]
@@ -59,6 +65,14 @@ function Get-WattTimeAuthToken {
     .NOTES
     A ba is WattTime's term for a balancing authority. A balancing authority is a regional entity that is responsible for maintaining the balance between supply and demand of electricity in a given region. For more information, see https://www.watttime.org/faq
 
+    .LINK
+    https://github.com/cloudyspells/PSWattTime/blob/main/docs/Get-WattTime.md
+
+    .LINK
+    https://github.com/cloudyspells/PSWattTime/blob/main/docs/Get-WattTimeAuthToken.md
+
+    .LINK
+    https://www.watttime.org/api-documentation/#real-time-emissions-index
 #>
 function Get-WattTime {
     [CmdletBinding()]
@@ -96,10 +110,20 @@ function Get-WattTime {
     ConvertFrom-AzureRegion -Region westeurope
 
     .NOTES
-    A ba is WattTime's term for a balancing authority. A balancing authority is a regional entity that is responsible for maintaining the balance between supply and demand of electricity in a given region. For more information, see https://www.watttime.org/faq
+    - A ba is WattTime's term for a balancing authority. A balancing authority is a regional entity that is responsible for maintaining the balance between supply and demand of electricity in a given region. For more information, see https://www.watttime.org/faq
+    - This command, like the module, requires you to be connected to Azure via Connect-AzAccount
 
     .OUTPUTS
     a string containing the WattTime ba for the given Azure Region
+
+    .LINK
+    https://github.com/cloudyspells/PSWattTime/blob/main/docs/ConvertFrom-AzureRegion.md
+
+    .LINK
+    https://github.com/cloudyspells/PSWattTime/blob/main/docs/Get-WattTimeAuthToken.md
+
+    .LINK
+    https://www.watttime.org/api-documentation/#determine-grid-region
 #>
 function ConvertFrom-AzureRegion {
     [CmdletBinding()]
@@ -132,16 +156,28 @@ function ConvertFrom-AzureRegion {
     The Azure Region to get the WattTime index for
 
     .PARAMETER AuthToken
-    The authentication token to use for the request
+    The WattTime API authentication token to use for the request
 
     .EXAMPLE
     Get-WattTimeForAzureRegion -Region westeurope -AuthToken $authToken
 
     .OUTPUTS
     System.Management.Automation.PSObject containing the following properties:
-        ba: The WattTime ba for the given Azure Region
-        percent: The current WattTime index for the given Azure Region
-        region: The Azure Region for which the WattTime index was retrieved
+    - ba: The WattTime ba for the given Azure Region
+    - percent: The current WattTime index for the given Azure Region
+    - region: The Azure Region for which the WattTime index was retrieved
+
+    .NOTES
+    This command, like the module, requires you to be connected to Azure via Connect-AzAccount
+
+    .LINK
+    https://github.com/cloudyspells/PSWattTime/blob/main/docs/Get-WattTimeForAzureRegion.md
+
+    .LINK
+    https://github.com/cloudyspells/PSWattTime/blob/main/docs/Get-WattTime.md
+
+    .LINK
+    https://github.com/cloudyspells/PSWattTime/blob/main/docs/Get-WattTimeAuthToken.md
 #>
 function Get-WattTimeForAzureRegion {
     [CmdletBinding()]
@@ -162,22 +198,31 @@ function Get-WattTimeForAzureRegion {
     Get the Azure region with the lowest wattTime index
 
     .DESCRIPTION
-    Get the current WattTime index for a given Azure Region
+    Get the Azure region with the lowest wattTime index from a given set of regions
 
     .PARAMETER Regions
     The list of Azure Regions to get the WattTime index for
 
     .PARAMETER AuthToken
-    The authentication token to use for the request
+    The WattTime API authentication token to use for the request
 
     .EXAMPLE
     Get-AzureRegionWithLowestWattTime -Regions westeurope,northeurope -AuthToken $authToken
 
     .OUTPUTS
     System.Management.Automation.PSObject containing the following properties:
-        ba: The WattTime ba for the given Azure Region
-        percent: The current WattTime index for the given Azure Region
-        region: The Azure Region for which the WattTime index was retrieved
+    - ba: The WattTime ba for the given Azure Region
+    - percent: The current WattTime index for the given Azure Region
+    - region: The Azure Region for which the WattTime index was retrieved
+
+    .NOTES
+    This command, like the module, requires you to be connected to Azure via Connect-AzAccount
+
+    .LINK
+    https://github.com/cloudyspells/PSWattTime/blob/main/docs/Get-AzureRegionWithLowestWattTime.md
+    
+    .LINK
+    https://github.com/cloudyspells/PSWattTime/blob/main/docs/Get-WattTimeAuthToken.md
 #>
 function Get-AzureRegionWithLowestWattTime {
     [CmdletBinding()]
@@ -196,11 +241,11 @@ function Get-AzureRegionWithLowestWattTime {
 
 <#
     .SYNOPSIS
-    Create a new WattTime account
+    Create a new WattTime API account
 
     .DESCRIPTION
-    Creates a new PSWattTime account with the specified username,
-    password, email and organization
+    Creates a new WattTime API account with the specified username,
+    password, email and organization on watttime.org
 
     .PARAMETER Username
     The username for the new account
@@ -219,10 +264,17 @@ function Get-AzureRegionWithLowestWattTime {
 
     .OUTPUTS
     System.Management.Automation.PSObject containing the following properties:
-        username: The username for the new account
-        email: The email address for the new account
-        org: The organization for the new account
-        token: The authentication token for the new account
+    - user: The username for the new account
+    - ok: The response for user creation
+
+    .NOTES
+    You can use an email address only once at WattTime. Registering multiple accounts will fail with an error.
+
+    .LINK
+    https://github.com/cloudyspells/PSWattTime/blob/main/docs/New-WattTimeAccount.md
+
+    .LINK
+    https://www.watttime.org/api-documentation/#register-new-user
 #>
 function New-WattTimeAccount {
     [CmdletBinding()]

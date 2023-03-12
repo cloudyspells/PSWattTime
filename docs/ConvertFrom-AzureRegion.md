@@ -1,7 +1,7 @@
 ---
 external help file: PSWattTime-help.xml
 Module Name: PSWattTime
-online version:
+online version: https://github.com/cloudyspells/PSWattTime/blob/main/docs/ConvertFrom-AzureRegion.md
 schema: 2.0.0
 ---
 
@@ -67,8 +67,14 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### a string containing the WattTime ba for the given Azure Region
 ## NOTES
-A ba is WattTime's term for a balancing authority.
-A balancing authority is a regional entity that is responsible for maintaining the balance between supply and demand of electricity in a given region.
-For more information, see https://www.watttime.org/faq
+- A ba is WattTime's term for a balancing authority. A balancing authority is a regional entity that is responsible for maintaining the balance between supply and demand of electricity in a given region. For more information, see https://www.watttime.org/faq
+- This command, like the module, requires you to be connected to Azure via Connect-AzAccount
 
 ## RELATED LINKS
+
+[https://github.com/cloudyspells/PSWattTime/blob/main/docs/ConvertFrom-AzureRegion.md](https://github.com/cloudyspells/PSWattTime/blob/main/docs/ConvertFrom-AzureRegion.md)
+
+[https://github.com/cloudyspells/PSWattTime/blob/main/docs/Get-WattTimeAuthToken.md](https://github.com/cloudyspells/PSWattTime/blob/main/docs/Get-WattTimeAuthToken.md)
+
+[https://www.watttime.org/api-documentation/#determine-grid-region](https://www.watttime.org/api-documentation/#determine-grid-region)
+

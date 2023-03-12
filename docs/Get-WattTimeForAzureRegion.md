@@ -1,7 +1,7 @@
 ---
 external help file: PSWattTime-help.xml
 Module Name: PSWattTime
-online version:
+online version: https://github.com/cloudyspells/PSWattTime/blob/main/docs/Get-WattTimeForAzureRegion.md
 schema: 2.0.0
 ---
 
@@ -44,7 +44,7 @@ Accept wildcard characters: False
 ```
 
 ### -AuthToken
-The authentication token to use for the request
+The WattTime API authentication token to use for the request
 
 ```yaml
 Type: String
@@ -66,9 +66,17 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## OUTPUTS
 
 ### System.Management.Automation.PSObject containing the following properties:
-###     ba: The WattTime ba for the given Azure Region
-###     percent: The current WattTime index for the given Azure Region
-###     region: The Azure Region for which the WattTime index was retrieved
+### - ba: The WattTime ba for the given Azure Region
+### - percent: The current WattTime index for the given Azure Region
+### - region: The Azure Region for which the WattTime index was retrieved
 ## NOTES
+This command, like the module, requires you to be connected to Azure via Connect-AzAccount
 
 ## RELATED LINKS
+
+[https://github.com/cloudyspells/PSWattTime/blob/main/docs/Get-WattTimeForAzureRegion.md](https://github.com/cloudyspells/PSWattTime/blob/main/docs/Get-WattTimeForAzureRegion.md)
+
+[https://github.com/cloudyspells/PSWattTime/blob/main/docs/Get-WattTime.md](https://github.com/cloudyspells/PSWattTime/blob/main/docs/Get-WattTime.md)
+
+[https://github.com/cloudyspells/PSWattTime/blob/main/docs/Get-WattTimeAuthToken.md](https://github.com/cloudyspells/PSWattTime/blob/main/docs/Get-WattTimeAuthToken.md)
+

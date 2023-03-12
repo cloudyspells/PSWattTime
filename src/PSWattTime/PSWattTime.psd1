@@ -12,7 +12,7 @@
 RootModule = 'PSWattTime.psm1'
 
 # Version number of this module.
-ModuleVersion = '1.0.2.0'
+ModuleVersion = '1.0.3.0'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
@@ -114,7 +114,7 @@ PrivateData = @{
         # IconUri = ''
 
         # ReleaseNotes of this module
-        ReleaseNotes = 'Added New-WattTimeAccount function for registering a new WattTime account'
+        ReleaseNotes = 'Updates to documentation and PowerShell internal help'
 
         # Prerelease string of this module
         # Prerelease = ''
@@ -130,7 +130,7 @@ PrivateData = @{
 } # End of PrivateData hashtable
 
 # HelpInfo URI of this module
-HelpInfoURI = ''
+HelpInfoURI = 'https://github.com/cloudyspells/PSWattTime#readme'
 
 # Default prefix for commands exported from this module. Override the default prefix using Import-Module -Prefix.
 # DefaultCommandPrefix = ''

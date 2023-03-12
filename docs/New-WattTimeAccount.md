@@ -1,14 +1,14 @@
 ---
 external help file: PSWattTime-help.xml
 Module Name: PSWattTime
-online version:
+online version: https://github.com/cloudyspells/PSWattTime/blob/main/docs/New-WattTimeAccount.md
 schema: 2.0.0
 ---
 
 # New-WattTimeAccount
 
 ## SYNOPSIS
-Create a new WattTime account
+Create a new WattTime API account
 
 ## SYNTAX
 
@@ -18,8 +18,8 @@ New-WattTimeAccount [-Username] <String> [-Password] <String> [-Email] <String> 
 ```
 
 ## DESCRIPTION
-Creates a new PSWattTime account with the specified username,
-password, email and organization
+Creates a new WattTime API account with the specified username,
+password, email and organization on watttime.org
 
 ## EXAMPLES
 
@@ -98,10 +98,15 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## OUTPUTS
 
 ### System.Management.Automation.PSObject containing the following properties:
-###     username: The username for the new account
-###     email: The email address for the new account
-###     org: The organization for the new account
-###     token: The authentication token for the new account
+### - user: The username for the new account
+### - ok: The response for user creation
 ## NOTES
+You can use an email address only once at WattTime.
+Registering multiple accounts will fail with an error.
 
 ## RELATED LINKS
+
+[https://github.com/cloudyspells/PSWattTime/blob/main/docs/New-WattTimeAccount.md](https://github.com/cloudyspells/PSWattTime/blob/main/docs/New-WattTimeAccount.md)
+
+[https://www.watttime.org/api-documentation/#register-new-user](https://www.watttime.org/api-documentation/#register-new-user)
+
