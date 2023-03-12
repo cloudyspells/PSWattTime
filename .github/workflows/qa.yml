@@ -41,17 +41,18 @@ jobs:
           Import-Module Az.Resources
           Import-Module Pester
           $pConfig = New-PesterConfiguration
+          $pConfig.Run.Path = './tests/PSWattTime.Tests/PSWattTime.Tests.ps1'
+          $pConfig.Run.PassThru = $true
           $pConfig.Output.CIFormat = 'GithubActions'
           $pConfig.Output.Verbosity = 'Detailed'
           $pConfig.TestResult.OutputFormat = 'JunitXml'
           $pConfig.TestResult.OutputPath ='./tests/junit.xml'
           $pConfig.TestResult.Enabled = $true
-          $p = Invoke-Pester ./tests/PSWattTime.Tests/PSWattTime.Tests.ps1 `
-            -PassThru `
-            -CodeCoverage ./src/PSWattTime/PSWattTime.psm1 `
-            -CodeCoverageOutputFile ./tests/coverage.xml `
-            -CodeCoverageOutputFileFormat JaCoCo `
-            -Configuration $pConfig
+          $pConfig.CodeCoverage.Enabled = $true
+          $pConfig.CodeCoverage.OutputFormat = 'JaCoCo'
+          $pConfig.CodeCoverage.OutputPath = './tests/coverage.xml'
+          $pConfig.CodeCoverage.Path = './src/PSWattTime/PSWattTime.psm1'
+          $p = Invoke-Pester -Configuration $pConfig
           Write-Output "## Pester Test Results" >> $env:GITHUB_STEP_SUMMARY
           Write-Output "" >> $env:GITHUB_STEP_SUMMARY
           Write-Output "- Code coverage: **$($p.CodeCovergage.CodeCoveragePercent)**" >> $env:GITHUB_STEP_SUMMARY
