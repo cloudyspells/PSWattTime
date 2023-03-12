@@ -46,6 +46,6 @@ runs:
         Write-Output "### PSWattTime Azure Region selection" >> $env:GITHUB_STEP_SUMMARY
         Write-Output "" >> $env:GITHUB_STEP_SUMMARY
         Write-Output "- Azure region with lowest emissions: **$($result.region)**" >> $env:GITHUB_STEP_SUMMARY
-        Write-Output "- Emissions percentage: **$($result.region)**" >> $env:GITHUB_STEP_SUMMARY
+        Write-Output "- Emissions percentage: **$($result.percent)**" >> $env:GITHUB_STEP_SUMMARY
 
 
