@@ -1,7 +1,7 @@
 ---
 external help file: PSWattTime-help.xml
 Module Name: PSWattTime
-online version:
+online version: https://github.com/cloudyspells/PSWattTime/blob/main/docs/Get-WattTime.md
 schema: 2.0.0
 ---
 
@@ -71,3 +71,10 @@ A balancing authority is a regional entity that is responsible for maintaining t
 For more information, see https://www.watttime.org/faq
 
 ## RELATED LINKS
+
+[https://github.com/cloudyspells/PSWattTime/blob/main/docs/Get-WattTime.md](https://github.com/cloudyspells/PSWattTime/blob/main/docs/Get-WattTime.md)
+
+[https://github.com/cloudyspells/PSWattTime/blob/main/docs/Get-WattTimeAuthToken.md](https://github.com/cloudyspells/PSWattTime/blob/main/docs/Get-WattTimeAuthToken.md)
+
+[https://www.watttime.org/api-documentation/#real-time-emissions-index](https://www.watttime.org/api-documentation/#real-time-emissions-index)
+

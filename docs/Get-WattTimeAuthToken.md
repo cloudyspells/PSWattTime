@@ -1,7 +1,7 @@
 ---
 external help file: PSWattTime-help.xml
 Module Name: PSWattTime
-online version:
+online version: https://github.com/cloudyspells/PSWattTime/blob/main/docs/Get-WattTimeAuthToken.md
 schema: 2.0.0
 ---
 
@@ -70,3 +70,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 This token should be used by the -AuthToken parameter of the other functions in this module
 
 ## RELATED LINKS
+
+[https://github.com/cloudyspells/PSWattTime/blob/main/docs/Get-WattTimeAuthToken.md](https://github.com/cloudyspells/PSWattTime/blob/main/docs/Get-WattTimeAuthToken.md)
+
+[https://www.watttime.org/api-documentation/#login-amp-obtain-token](https://www.watttime.org/api-documentation/#login-amp-obtain-token)
+
