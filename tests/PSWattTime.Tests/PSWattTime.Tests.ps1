@@ -5,6 +5,45 @@ Describe "PSWattTimeTests" {
         $env:WATTTIMEUSERNAME | Should -Not -BeNullOrEmpty
         $env:WATTTIMEPASSWORD | Should -Not -BeNullOrEmpty
     }
+
+    Context "When we have imported the module" {
+        It "Should have a ConvertFrom-AzureRegion command" {
+            $test = Get-Command -Module PSWattTime -Name 'ConvertFrom-AzureRegion'
+            $test | Should -Not -BeNullOrEmpty
+            $test.CommandType | Should -Be 'Function'
+        }
+
+        It "Should have a Get-AzureRegionWithLowestWattTime command" {
+            $test = Get-Command -Module PSWattTime -Name 'Get-AzureRegionWithLowestWattTime'
+            $test | Should -Not -BeNullOrEmpty
+            $test.CommandType | Should -Be 'Function'
+        }
+
+        It "Should have a Get-WattTime command" {
+            $test = Get-Command -Module PSWattTime -Name 'Get-WattTime'
+            $test | Should -Not -BeNullOrEmpty
+            $test.CommandType | Should -Be 'Function'
+        }
+
+        It "Should have a Get-WattTimeAuthToken command" {
+            $test = Get-Command -Module PSWattTime -Name 'Get-WattTimeAuthToken'
+            $test | Should -Not -BeNullOrEmpty
+            $test.CommandType | Should -Be 'Function'
+        }
+
+        It "Should have a Get-WattTimeForAzureRegion command" {
+            $test = Get-Command -Module PSWattTime -Name 'Get-WattTimeForAzureRegion'
+            $test | Should -Not -BeNullOrEmpty
+            $test.CommandType | Should -Be 'Function'
+        }
+
+        It "Should have a New-WattTimeAccount command" {
+            $test = Get-Command -Module PSWattTime -Name 'New-WattTimeAccount'
+            $test | Should -Not -BeNullOrEmpty
+            $test.CommandType | Should -Be 'Function'
+        }
+
+    }
     
     Context "When we login" {
         It "Should return a token" {
@@ -103,6 +142,24 @@ Describe "PSWattTimeTests" {
 
         It "Should return a PSCustomObject with a percent property with a value" {
             $wattTime.percent | Should -BeOfType 'string'
+        }
+    }
+    Context "When we register an account" {
+        BeforeAll {
+            Mock -ModuleName PSWattTime -CommandName Invoke-RestMethod { return (New-Object PSObject -Property @{'user' = 'freddo';'ok' = 'User created'})}
+            $newAccount = New-WattTimeAccount `
+                -Username 'freddo' `
+                -Password 'P@ssvvordsAr3St00p1d' `
+                -Organization 'CloudySpells' `
+                -Email 'freddo@example.com'
+        }
+        
+        It "Should return a PSObject" {
+            $newAccount | Should -BeOfType 'PSObject'
+        }
+
+        It "Should return an ok field with a user created value" {
+            $newAccount.ok | Should -Be 'User created'
         }
     }
 }

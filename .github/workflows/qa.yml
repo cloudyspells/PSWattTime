@@ -39,14 +39,42 @@ jobs:
           Set-PSRepository PSGallery -InstallationPolicy Trusted
           Install-Module Az.Resources
           Import-Module Az.Resources
-          Invoke-Pester ./tests/PSWattTime.Tests/PSWattTime.Tests.ps1 `
-            -PassThru `
-            -CodeCoverage ./src/PSWattTime/PSWattTime.psm1 `
-            -CodeCoverageOutputFile ./tests/coverage.xml `
-            -CodeCoverageOutputFileFormat JaCoCo `
-            -OutputFile ./tests/junit.xml `
-            -OutputFormat JUnitXml `
-            -EnableExit
+          Import-Module Pester
+          $pConfig = New-PesterConfiguration
+          $pConfig.Run.Path = './tests/PSWattTime.Tests/PSWattTime.Tests.ps1'
+          $pConfig.Run.PassThru = $true
+          $pConfig.Output.CIFormat = 'GithubActions'
+          $pConfig.Output.Verbosity = 'Detailed'
+          $pConfig.TestResult.OutputFormat = 'JunitXml'
+          $pConfig.TestResult.OutputPath ='./tests/junit.xml'
+          $pConfig.TestResult.Enabled = $true
+          $pConfig.CodeCoverage.Enabled = $true
+          $pConfig.CodeCoverage.OutputFormat = 'JaCoCo'
+          $pConfig.CodeCoverage.OutputPath = './tests/coverage.xml'
+          $pConfig.CodeCoverage.Path = './src/PSWattTime/PSWattTime.psm1'
+          $p = Invoke-Pester -Configuration $pConfig
+          Write-Output "## Pester Test Results" >> $env:GITHUB_STEP_SUMMARY
+          Write-Output "" >> $env:GITHUB_STEP_SUMMARY
+          Write-Output "- Code coverage: **$($p.CodeCoverage.CoveragePercent)**" >> $env:GITHUB_STEP_SUMMARY
+          Write-Output "- Commands Executed: **$($p.CodeCoverage.CommandsExecutedCount)**" >> $env:GITHUB_STEP_SUMMARY
+          Write-Output "- Commands Missed: **$($p.CodeCoverage.CommandsMissedCount)**" >> $env:GITHUB_STEP_SUMMARY
+          Write-Output "" >> $env:GITHUB_STEP_SUMMARY
+          Write-Output "|Block|Test|Duration|Result|" >> $env:GITHUB_STEP_SUMMARY
+          Write-Output "|---|---|---|---|" >> $env:GITHUB_STEP_SUMMARY
+          $p.Tests | ForEach-Object {
+            $mdTestResult = ""
+            If($_.Result -eq 'Failed') {
+              $mdTestResult = ":boom: Failed"
+            }
+            ElseIf($_.Result -eq 'Passed') {
+              $mdTestResult = ":green_heart: Passed"
+            }
+            Else {
+              $mdTestResult = ":nerd_face: $($_.Result)"
+            }
+            Write-Output "|$($_.Block)|$($_.Name)|$($_.Duration)|$($mdTestResult)|"
+          } >> $env:GITHUB_STEP_SUMMARY
+          Write-Output "" >> $env:GITHUB_STEP_SUMMARY
 
       - name: Test the Module Manifest
         shell: pwsh
