@@ -92,6 +92,7 @@ jobs:
       - name: Echo region from action
         run: |
           echo 'Best emissions region: ${{ steps.watttime_action.outputs.region }}'
+          echo 'Best emissions percent: ${{ steps.watttime_action.outputs.percent }}'
 
       - name: Upload test results
         uses: actions/upload-artifact@v3
