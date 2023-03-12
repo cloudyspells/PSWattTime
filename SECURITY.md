@@ -5,9 +5,10 @@
 Currently only the first final release is supported.
 
 | Version | Supported          |
-| ------- | ------------------ |
-| 1.0.0   | :white_check_mark: |
-| 0.x.x   | :x:                |
+| ---: | ------------------ |
+| >= 1.0.2   | :white_check_mark: |
+| <= 1.0.1  | :x:                |
+| 0.x.x     | :x:                |
 
 ## Reporting a Vulnerability
 
