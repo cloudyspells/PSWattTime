@@ -81,7 +81,7 @@ jobs:
         run: Test-ModuleManifest -Path ./src/PSWattTime/PSWattTime.psd1
 
       - name: Run the GitHub action in this commit
-        uses: cloudyspells/PSWattTime@main
+        uses: ./
         id: watttime_action
         with:
           azure_credential: ${{ secrets.AZURE_CREDENTIALS }}
