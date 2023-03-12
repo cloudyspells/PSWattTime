@@ -55,9 +55,9 @@ jobs:
           $p = Invoke-Pester -Configuration $pConfig
           Write-Output "## Pester Test Results" >> $env:GITHUB_STEP_SUMMARY
           Write-Output "" >> $env:GITHUB_STEP_SUMMARY
-          Write-Output "- Code coverage: **$($p.CodeCovergage.CodeCoveragePercent)**" >> $env:GITHUB_STEP_SUMMARY
-          Write-Output "- Commands Executed: **$($p.CodeCovergage.CommandsExecutedCount)**" >> $env:GITHUB_STEP_SUMMARY
-          Write-Output "- Commands Missed: **$($p.CodeCovergage.CommandsMissedCount)**" >> $env:GITHUB_STEP_SUMMARY
+          Write-Output "- Code coverage: **$($p.CodeCoverage.CoveragePercent)**" >> $env:GITHUB_STEP_SUMMARY
+          Write-Output "- Commands Executed: **$($p.CodeCoverage.CommandsExecutedCount)**" >> $env:GITHUB_STEP_SUMMARY
+          Write-Output "- Commands Missed: **$($p.CodeCoverage.CommandsMissedCount)**" >> $env:GITHUB_STEP_SUMMARY
           Write-Output "" >> $env:GITHUB_STEP_SUMMARY
           Write-Output "|Block|Test|Duration|Result|" >> $env:GITHUB_STEP_SUMMARY
           Write-Output "|---|---|---|---|" >> $env:GITHUB_STEP_SUMMARY
