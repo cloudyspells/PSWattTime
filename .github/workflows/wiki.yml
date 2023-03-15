@@ -24,10 +24,10 @@ jobs:
           repository: ${{github.repository}}.wiki
           path: wiki
 
-      - name: Copy README.md as quickstart.md
+      - name: Copy wiki base sources
         shell: bash
         run: |
-          cp ./main/README.md ./wiki/quickstart.md
+          cp ./main/docs/wiki-src/*.md ./wiki/
 
       - name: Login to Az PowerShell Module
         uses: azure/login@v1
@@ -43,7 +43,11 @@ jobs:
           Install-Module PlatyPS
           Import-Module PlatyPS
           Import-Module ./main/src/PSWattTime
-          New-MarkdownHelp -Module PSWattTime -Force -OutputFolder ./wiki/
+          New-MarkdownHelp -Module PSWattTime `
+            -Verbose `
+            -Force `
+            -NoMetadata `
+            -OutputFolder ./wiki/
 
       - name: Commit and push changes to wiki
         shell: bash

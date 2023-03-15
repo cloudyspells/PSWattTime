@@ -1,10 +1,3 @@
----
-external help file: PSWattTime-help.xml
-Module Name: PSWattTime
-online version: https://github.com/cloudyspells/PSWattTime/blob/main/docs/Get-WattTimeForAzureRegion.md
-schema: 2.0.0
----
-
 # Get-WattTimeForAzureRegion
 
 ## SYNOPSIS
