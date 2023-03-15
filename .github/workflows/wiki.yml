@@ -1,0 +1,43 @@
+# File: .github/workflows/wiki.yml
+
+on:
+  workflow_dispatch:
+
+name: Publish Wiki
+
+jobs:
+  build-publish-wiki:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout PSWattTime
+        uses: actions/checkout@v3
+        with:
+          path: main
+
+      - name: Checkout Wiki
+        uses: actions/checkout@v3
+        with:
+          repository: cloudyspells/PSWattTime.wiki
+          path: wiki
+
+      - name: Copy README.md as quickstart.md
+        shell: bash
+        run: |
+          cp ./main/README.md ./wiki/quickstart.md
+
+      - name: Generate Module docs
+        shell: pwsh
+        run: |
+          Install-Module PlatyPS
+          Import-Module PlatyPS
+          Import-Module ./main/src/PSWattTime
+          New-MarkdownHelp -Module PSWattTime -Force -OutputFolder ./wiki/
+
+      - name: Commit and push changes to wiki
+        shell: bash
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m "generated docs from actions workflow"
+          git push
