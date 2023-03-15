@@ -25,6 +25,12 @@ jobs:
         run: |
           cp ./main/README.md ./wiki/quickstart.md
 
+      - name: Login to Az PowerShell Module
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          enable-AzPSSession: true
+
       - name: Generate Module docs
         shell: pwsh
         run: |
