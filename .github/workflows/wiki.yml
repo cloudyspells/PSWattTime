@@ -5,6 +5,10 @@ on:
 
 name: Publish Wiki
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   build-publish-wiki:
     runs-on: ubuntu-22.04
@@ -17,7 +21,7 @@ jobs:
       - name: Checkout Wiki
         uses: actions/checkout@v3
         with:
-          repository: cloudyspells/PSWattTime.wiki
+          repository: ${{github.repository}}.wiki
           path: wiki
 
       - name: Copy README.md as quickstart.md
