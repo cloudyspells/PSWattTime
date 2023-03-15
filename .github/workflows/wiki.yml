@@ -1,6 +1,9 @@
 # File: .github/workflows/wiki.yml
 
 on:
+  release:
+    types:
+      - "published"
   workflow_dispatch:
 
 name: Publish Wiki
