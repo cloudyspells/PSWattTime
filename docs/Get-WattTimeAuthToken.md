@@ -1,10 +1,3 @@
----
-external help file: PSWattTime-help.xml
-Module Name: PSWattTime
-online version: https://github.com/cloudyspells/PSWattTime/blob/main/docs/Get-WattTimeAuthToken.md
-schema: 2.0.0
----
-
 # Get-WattTimeAuthToken
 
 ## SYNOPSIS

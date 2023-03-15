@@ -1,9 +1,16 @@
 # File: .github/workflows/wiki.yml
 
 on:
+  release:
+    types:
+      - "published"
   workflow_dispatch:
 
 name: Publish Wiki
+
+permissions:
+  contents: write
+  pull-requests: write
 
 jobs:
   build-publish-wiki:
@@ -17,24 +24,37 @@ jobs:
       - name: Checkout Wiki
         uses: actions/checkout@v3
         with:
-          repository: cloudyspells/PSWattTime.wiki
+          repository: ${{github.repository}}.wiki
           path: wiki
 
-      - name: Copy README.md as quickstart.md
+      - name: Copy wiki base sources
         shell: bash
         run: |
-          cp ./main/README.md ./wiki/quickstart.md
+          cp ./main/docs/wiki-src/*.md ./wiki/
+
+      - name: Login to Az PowerShell Module
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          enable-AzPSSession: true
 
       - name: Generate Module docs
         shell: pwsh
         run: |
+          Set-PSRepository PSGallery -InstallationPolicy Trusted
+          Install-Module Az.Resources
           Install-Module PlatyPS
           Import-Module PlatyPS
           Import-Module ./main/src/PSWattTime
-          New-MarkdownHelp -Module PSWattTime -Force -OutputFolder ./wiki/
+          New-MarkdownHelp -Module PSWattTime `
+            -Verbose `
+            -Force `
+            -NoMetadata `
+            -OutputFolder ./wiki/
 
       - name: Commit and push changes to wiki
         shell: bash
+        working-directory: ./wiki
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
