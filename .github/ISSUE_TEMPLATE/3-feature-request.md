@@ -1,8 +1,8 @@
 ---
 name: "🚀🆕 Feature Request"
 about: "Suggest an idea or possible new feature for this project."
-title: ""
-labels: "Type: Feature"
+title: "Feature: "
+labels: ["enhancement"]
 assignees: webtonize
 
 ---
