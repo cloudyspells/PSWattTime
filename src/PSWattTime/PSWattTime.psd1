@@ -12,7 +12,7 @@
 RootModule = 'PSWattTime.psm1'
 
 # Version number of this module.
-ModuleVersion = '1.0.4.0'
+ModuleVersion = '1.0.5.0'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
@@ -114,7 +114,7 @@ PrivateData = @{
         # IconUri = ''
 
         # ReleaseNotes of this module
-        ReleaseNotes = 'Updates to documentation and PowerShell internal help'
+        ReleaseNotes = 'Fix return datatype for percent of each function'
 
         # Prerelease string of this module
         # Prerelease = ''

@@ -90,6 +90,7 @@ function Get-WattTime {
         ba = $ba
     }
     $wattTime = Invoke-RestMethod -Uri 'https://api2.watttime.org/v2/index/' -Method Get -Headers $headers -Body $params -ContentType 'application/json'
+    $wattTime.percent = [int]($wattTime.percent)
     return $wattTime
 }
 

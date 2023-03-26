@@ -1,3 +1,3 @@
 @{
-    ExcludeRules = @('PSAvoidUsingPlainTextForPassword')
+    ExcludeRules = @('PSAvoidUsingPlainTextForPassword','PSAvoidUsingUsernameAndPasswordParams')
 }

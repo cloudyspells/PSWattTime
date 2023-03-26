@@ -102,7 +102,7 @@ Describe "PSWattTimeTests" {
         }
 
         It "Should return a PSCustomObject with a percent property with a value" {
-            $wattTime.percent | Should -BeOfType 'string'
+            $wattTime.percent | Should -BeOfType 'int'
         }
     }
 
@@ -141,7 +141,7 @@ Describe "PSWattTimeTests" {
         }
 
         It "Should return a PSCustomObject with a percent property with a value" {
-            $wattTime.percent | Should -BeOfType 'string'
+            $wattTime.percent | Should -BeOfType 'int'
         }
     }
     Context "When we register an account" {
